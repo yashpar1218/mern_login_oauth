@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins", sans-serif;
+}
+
+nav{
+    display: flex;
+    height: 7vh;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    align-items: center;
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    
+}
+.logo{
+    margin-left: 5%;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c2727;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+.nav-links{
+    display: flex;
+    justify-content: space-around;
+    width: fit-content;
+    position: absolute;
+    right: 5%;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+   
+}
+.nav-links a{
+    text-decoration: none;
+    color: #2c2727;
+    font-size: 1.1rem;
+    font-weight: 450;
+    transition: all 0.3s ease;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 93vh;
+    width: 100%;
+    /* background-image: linear-gradient(120deg, #b49a45 0%, #fda085 100%); */
+}
+.login{
+    background-color: #f6d365;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: #000000;
+    width: 30%;
+    height: 50%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.44);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.login1 {
+    width: calc(100% - 3%);
+    height: calc(100% - 3%);
+    background-color: inherit;
+    padding: 5px 10px 5px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+
+}
+.name{
+    color: #2c2727;
+    font-size: 1.5rem;
+    font-weight: 500;
+    align-self: flex-start;
+
+}
+.emailcontainer{
+    width: 100%;
+    height: 17%;
+    background-color: rgb(239, 211, 194);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+
+}
+.emailcontainer:focus-within{
+   
+    border: 2px solid #2c2727;
+}
+.emailaddress{
+    width: 90%;
+    height: calc(100% - 30%);
+    background: none;
+    outline: none;border: none;
+    
+
+
+}
+.passwordc{
+    width: 100%;
+    height: 17%;
+    background-color: rgb(239, 211, 194);
+    border-radius: 10px;
+    position: relative;
+    
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+
+}
+.passwordc:focus-within{
+   
+    border: 2px solid #2c2727;
+}
+.passwordfield{
+    width: 90%;
+    height: calc(100% - 30%);
+    background: none;
+    outline: none;border: none;
+
+}
+.submit input{
+    width: 9vw;
+    height: 5vh;
+    background-color: orange;
+    border: none;
+    border-radius: 10px;
+    color: #2c2727;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.submit input:hover{
+    background-color: #614f14;
+    cursor: pointer;
+    color: white;
+}
+.googlei{
+    width: 100%;
+    height: 17%;
+    
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+.googlei img{
+    
+    border-radius: 50%;
+}

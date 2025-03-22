@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h4>JS Task</h4>
+
+            </div>
+            <div class="nav-links">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="login">
+            <div class="login1">
+                <div class="name">
+                    <h4>Login</h4>
+                </div>
+
+
+                <div class="emailcontainer">
+                    <input type="email" id="email" class="emailaddress" placeholder="Type your Email Address here">
+
+                </div>
+
+                <div class="passwordc">
+                    <input type="password" id="password" class="passwordfield" placeholder="Password goes here">
+
+                </div>
+
+
+                <div class="submit">
+                    <input type="button" value="Submit" onclick="loginUser()">
+
+                </div>
+                <div>
+                    <p>-----Or sign in using---- </p>
+                    <div class="googlei">
+                        <a href="http://localhost:5000/auth/google"><img
+                                src="https://w7.pngwing.com/pngs/326/85/png-transparent-google-logo-google-text-trademark-logo.png"
+                                height="30px" width="30px" alt=""></a>
+                            </div>
+                </div>
+                <p id="errorMessage" style="color: red; text-align: center;"></p>
+            </div>
+
+        </section>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector(".submit input").addEventListener("click", function (event) {
+                event.preventDefault(); // Prevents default form submission
+                loginUser(); // Calls the login function
+            });
+        });
+
+        async function loginUser() {
+            const email = document.querySelector(".emailaddress").value;
+            const password = document.querySelector(".passwordfield").value;
+
+            try {
+                const response = await fetch("http://localhost:5000/auth/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",  // Important for session-based auth
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const data = await response.json();
+                console.log(data);
+
+                if (response.ok) {
+                    alert("Login successful!");
+                    // Redirect or perform further actions if needed
+                    window.location.href = "dashboard.html";
+                } else {
+                    alert(data.message || "Login failed!");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Something went wrong!");
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
