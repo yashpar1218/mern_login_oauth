@@ -37,6 +37,7 @@
                     <input type="email" id="email" class="emailaddress" placeholder="Type your Email Address here">
 
                 </div>
+                <span class="errorMessage" style="color: red; text-align: center;" > </span>
 
                 <div class="passwordc">
                     <input type="password" id="password" class="passwordfield" placeholder="Password goes here">
@@ -63,43 +64,67 @@
     </main>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            document.querySelector(".submit input").addEventListener("click", function (event) {
-                event.preventDefault(); // Prevents default form submission
-                loginUser(); // Calls the login function
+            const emailInput = document.querySelector(".emailaddress");
+            const passwordInput = document.querySelector(".passwordfield");
+            const submitButton = document.querySelector(".submit input");
+            const errorMessage = document.querySelector(".errorMessage");
+    
+            // Regular expression for validating email
+            function validateEmail(email) {
+                const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                return regex.test(email);
+            }
+    
+            // Real-time validation as user types
+            emailInput.addEventListener("input", function () {
+                if (!validateEmail(emailInput.value)) {
+                    errorMessage.textContent = "Invalid email address!";
+                    submitButton.disabled = true; // Disable login button
+                } else {
+                    errorMessage.textContent = "";
+                    submitButton.disabled = false; // Enable login button
+                }
+            });
+    
+            // Handle login process
+            submitButton.addEventListener("click", async function (event) {
+                event.preventDefault(); // Prevent form submission if email is invalid
+    
+                const email = emailInput.value;
+                const password = passwordInput.value;
+    
+                if (!validateEmail(email)) {
+                    errorMessage.textContent = "Please enter a valid email address before logging in.";
+                    return; // Stop login if invalid email
+                }
+    
+                try {
+                    const response = await fetch("http://localhost:5000/auth/login", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        credentials: "include",
+                        body: JSON.stringify({ email, password }),
+                    });
+    
+                    const data = await response.json();
+                    console.log(data);
+    
+                    if (response.ok) {
+                        alert("Login successful!");
+                        window.location.href = "dashboard.html"; // Redirect after successful login
+                    } else {
+                        errorMessage.textContent = data.message || "Login failed!";
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    errorMessage.textContent = "Something went wrong!";
+                }
             });
         });
-
-        async function loginUser() {
-            const email = document.querySelector(".emailaddress").value;
-            const password = document.querySelector(".passwordfield").value;
-
-            try {
-                const response = await fetch("http://localhost:5000/auth/login", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    credentials: "include",  // Important for session-based auth
-                    body: JSON.stringify({ email, password }),
-                });
-
-                const data = await response.json();
-                console.log(data);
-
-                if (response.ok) {
-                    alert("Login successful!");
-                    // Redirect or perform further actions if needed
-                    window.location.href = "dashboard.html";
-                } else {
-                    alert(data.message || "Login failed!");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                alert("Something went wrong!");
-            }
-        }
-
     </script>
+    
 
 </body>
 
