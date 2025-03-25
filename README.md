@@ -1,8 +1,6 @@
-Here’s your **README.md** file for your GitHub repository:  
 
----
 
-```markdown
+
 # Login Authentication System  
 
 This project implements a **session-based authentication system** using **Node.js, Express, Passport.js, and MongoDB**.  
@@ -20,7 +18,7 @@ It supports **local login**, **Google login**, and **GitHub login** .
 ```bash
 git clone <repository_url>
 cd <project_folder>
-```
+
 
 ### Step 3: Create `.env` File  
 - In the **root directory**, create a `.env` file and add the following details:  
@@ -108,6 +106,6 @@ mongosh
 ### 🔥 **Note**  
 - **Never push your `.env` file** to GitHub.  
 - If using a public repository, remove sensitive credentials before committing.  
-```  
+
 
 
