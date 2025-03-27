@@ -37,6 +37,7 @@ router.get('/github/callback',
 
 // Register Route
 router.post("/register", async (req, res) => {
+    try{
     const { name, email, password } = req.body;
 
     // Check if user already exists
@@ -58,6 +59,9 @@ router.post("/register", async (req, res) => {
 
     await user.save();
     res.json({ message: "User registered successfully" });
+} catch(err){
+    res.json({ message: "Server Error", error: error.message });
+}
 });
 
 // Login Route

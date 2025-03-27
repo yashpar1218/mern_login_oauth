@@ -7,7 +7,7 @@ require("dotenv").config();
 
 const path = require("path");
 const bodyParser = require("body-parser"); // Make sure this line is correct
-//const authRoutes = require("./routes/auth.js"); // Import auth routes
+const authRoutes = require("./routes/auth"); // Import auth routes
 const flash = require("connect-flash");
 const cors = require("cors");
 
@@ -59,7 +59,7 @@ app.use(flash());
 // Use authentication routes
 console.log("Auth routes are being used...");
 console.log("Trying to load auth routes...");
-const authRoutes = require("./routes/auth");
+
 console.log("Auth routes loaded successfully!");
 
 
